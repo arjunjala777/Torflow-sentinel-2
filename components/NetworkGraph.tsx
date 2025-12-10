@@ -384,8 +384,9 @@ const NetworkGraph: React.FC<NetworkGraphProps> = ({ trace, currentStep, viewMod
       .attr("fill", d => getNodeColor(d.type))
       .style("font-size", "9px")
       .style("font-weight", "bold")
-      .style("font-family", "JetBrains Mono");
-    
+      .style("font-family", "JetBrains Mono")
+      .attr("vector-effect", "non-scaling-stroke");
+
     // IP
     hoverGroup.append("text")
       .attr("x", 10)
@@ -393,7 +394,8 @@ const NetworkGraph: React.FC<NetworkGraphProps> = ({ trace, currentStep, viewMod
       .text(d => d.ip)
       .attr("fill", "#fff")
       .style("font-size", "11px")
-      .style("font-family", "JetBrains Mono");
+      .style("font-family", "JetBrains Mono")
+      .attr("vector-effect", "non-scaling-stroke");
 
     // Country Code (Right Aligned)
     hoverGroup.append("text")
@@ -403,7 +405,8 @@ const NetworkGraph: React.FC<NetworkGraphProps> = ({ trace, currentStep, viewMod
       .text(d => `[${d.country}]`)
       .attr("fill", "#888")
       .style("font-size", "10px")
-      .style("font-family", "JetBrains Mono");
+      .style("font-family", "JetBrains Mono")
+      .attr("vector-effect", "non-scaling-stroke");
       
     // Active Pulse (Subtle ring for active node in map view)
     nodeGroups.each(function(d, i) {

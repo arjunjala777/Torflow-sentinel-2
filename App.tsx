@@ -143,11 +143,6 @@ function App() {
               onChange={e => setQuery(e.target.value)}
               className="bg-tor-muted/30 border border-tor-border text-gray-300 text-sm font-mono py-1.5 pl-16 pr-4 w-[400px] focus:outline-none focus:border-gray-500 placeholder-gray-600 truncate"
             />
-            {isDbMatch && (
-              <div className="absolute inset-y-0 right-2 flex items-center pointer-events-none">
-                 <span className="text-[10px] bg-tor-green/20 text-tor-green border border-tor-green/30 px-1 rounded font-bold">DB MATCH</span>
-              </div>
-            )}
           </div>
           <button
             onClick={handleSearch}
