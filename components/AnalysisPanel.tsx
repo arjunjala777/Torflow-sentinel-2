@@ -119,3 +119,4 @@ const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ trace }) => {
 };
 
 export default AnalysisPanel;
+
