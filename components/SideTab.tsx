@@ -171,3 +171,4 @@ const SideTab: React.FC<SideTabProps> = ({ onSelect }) => {
 };
 
 export default SideTab;
+
