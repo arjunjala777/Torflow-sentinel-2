@@ -7,6 +7,9 @@ import AboutModal from './components/AboutModal';
 import LeftSidebar from './components/LeftSidebar';
 import DrishtiPanel from './components/DrishtiPanel';
 
+// 1. IMPORT LOGIN COMPONENT
+import Login from './components/Login';
+
 import type { TraceSession } from './types';
 import { fetchSessions } from './services/apiService';
 import { generateRandomTrace } from './services/mockData';
@@ -30,8 +33,10 @@ type ViewMode = 'topology' | 'map';
 type ToolOption = 'drishti' | 'falcon' | null;
 
 function App() {
-  const [query, setQuery] = useState(PRESETS[0].url);
+  // 2. AUTHENTICATION STATE
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  const [query, setQuery] = useState(PRESETS[0].url);
   const [currentTrace, setCurrentTrace] = useState<TraceSession | null>(null);
   const [replayStep, setReplayStep] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -44,9 +49,11 @@ function App() {
 
   // Initial load
   useEffect(() => {
-    handleSearch();
+    if (isAuthenticated) {
+      handleSearch();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isAuthenticated]); // Run initial search only after login
 
   const handleSearch = async () => {
     const localTrace = generateRandomTrace(query);
@@ -126,6 +133,11 @@ function App() {
     currentTrace?.id && currentTrace.id.length > 12
       ? `${currentTrace.id.substring(0, 12)}…`
       : currentTrace?.id ?? 'N/A';
+
+  // 3. AUTH GUARD
+  if (!isAuthenticated) {
+    return <Login onLogin={() => setIsAuthenticated(true)} />;
+  }
 
   return (
     <div className="min-h-screen bg-tor-black text-tor-text font-sans">
@@ -564,3 +576,4 @@ function App() {
 }
 
 export default App;
+
